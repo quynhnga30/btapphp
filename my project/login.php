@@ -1,11 +1,11 @@
 <?php
 //initialize the session
-session_start();
+/*session_start();
 //check if the user is already logged in, if yes then redirect him to index page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: index.php");
+    header("location: login.php");
     exit;
-}
+}*/
 
 require_once "config.php";
 //define variables and initialize with empty values
@@ -88,7 +88,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           href = "http://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
+
         .wrapper{ width: 360px; padding: 20px; }
+
     </style>
 </head>
 <body>
@@ -103,10 +105,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
     method="post"
-    <div class="form-group">
+    <div class="from-group">
         <label>Username</label>
-        <input type="text" name="username" class="form-control
-                   <?php echo (!empty($username_err)) ? 'is-invalid' :''; ?>">
+        <input type="text" name="username" class="from-control
+            <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>"
+               value="<?php echo $username; ?>">
+        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+    </div>
+    <div class="from-group" style="font: 14px sans-serif; ">
+        <label>Password</label>
+        <input type="password" name="password" class="from-control
+            <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"
+               value="<?php echo $password; ?>">
         <span class="invalid-feedback"><?php echo $password_err; ?></span>
     </div>
     <div class="form-group">
